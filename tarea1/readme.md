@@ -1,12 +1,12 @@
 ## Tarea 1 - Red Neuronal
+
+### Instalación y Ejecución
+
 La tarea se realizó utilizando python 3.7, es el único requesito previo necesario.
 
-Para ejecutar la tarea basta correr los comandos
-```
-$ pip install -r requirements.txt
-$ python Tarea1.py
-```
-desde la carpeta actual (tarea1/).
+Para instalar las librerías necesarias se debe correr `$ pip install -r requirements.txt`.
+
+Para ejecutar la tarea basta correr el comando `$ python Tarea1.py` desde la carpeta actual (`tarea1/`).
 
 
 ### Dataset
@@ -40,4 +40,6 @@ A continuación se meustran ejemplos de los resultados obtenidos (utilizando see
 ##### Precisión según neuronas en la capa oculta
 ![accuracies](./img/accs.png)
 
-En general se aprecian buenos resultados, además la implementación permite comparar
+En general se aprecian buenos resultados, obteniendo sobre 90% precisión en todas las redes probadas.
+Además la implementación permite comparar fácilmente distintas configuraciones, entregando una buena interfaz para el
+usuario.
