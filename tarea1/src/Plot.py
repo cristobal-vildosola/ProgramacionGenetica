@@ -31,7 +31,7 @@ def plot_mats(hidden_layer_size, mats):
     return plt.show(block=False)
 
 
-def plot_performance(hidden_layer_sizes, accs):
+def plot_accuracy(hidden_layer_sizes, accs):
     fig, ax = plt.subplots()
 
     # lines with error bars

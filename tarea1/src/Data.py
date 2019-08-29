@@ -24,7 +24,8 @@ def normalize(data, low=0, high=1):
 
 
 # separa los datos en las clases dadas
-def divide_by_class(data, classes=(0, 1)):
+def divide_by_class(data):
+    classes = list(set(data[:, -1]))
     n = len(classes)
     groups = [[] for _ in range(n)]
 
@@ -37,16 +38,16 @@ def divide_by_class(data, classes=(0, 1)):
 
 
 # separa los datos en 2 conjuntos manteniendo la proporcion entre las n clases
-def separate_data(data, prop, classes=(0, 1)):
-    # revolver y separar datos
+def separate_data(data, prop):
+    # shuffle and divide data by class
     numpy.random.shuffle(data)
-    classes_groups = divide_by_class(data, classes)
+    classes_groups = divide_by_class(data)
 
     group_1 = []
     group_2 = []
 
-    # distribuir cada clase de forma proporcional
-    for c in range(len(classes)):
+    # divide data with the given proportion
+    for c in range(len(classes_groups)):
         n = len(classes_groups[c])
 
         for i in range(n):
@@ -55,7 +56,7 @@ def separate_data(data, prop, classes=(0, 1)):
             else:
                 group_2.append(classes_groups[c][i])
 
-    # pasar a numpy arrays y revolver
+    # convert to numpy array and shuffle
     group_1 = numpy.array(group_1)
     group_2 = numpy.array(group_2)
     numpy.random.shuffle(group_1)
