@@ -34,6 +34,7 @@ class MLP:
         # check data and labels
         assert isinstance(data, np.ndarray), 'data must be a numpy array'
         assert len(data.shape) == 2, 'data must be 2D matrix'
+        assert np.issubdtype(data.dtype, np.number), 'data must be numeric'
         assert isinstance(labels, (list, np.ndarray)), 'labels must be a list or numpy array'
         assert len(data) == len(labels), 'there must be the same number of data points and labels'
 
@@ -212,7 +213,12 @@ class MLP:
 
         # check data when provided
         if data is not None:
-            assert isinstance(data, np.ndarray) and len(data.shape) == 2, 'data must be a 2-dimensional numpy array'
+            assert isinstance(data, np.ndarray), 'data must be a numpy array'
+            assert len(data.shape) == 2, 'data must be 2D matrix'
+            assert np.issubdtype(data.dtype, np.number), 'data must be numeric'
+            assert data.shape[1] == self.data.shape[1], \
+                f'data must have the same number of inputs as the example data.' \
+                f' Expected {self.data.shape[1]} but got {data.shape[1]}'
             assert isinstance(labels, (list, np.ndarray)), 'labels must be a list or numpy array'
             assert len(data) == len(labels), 'there must be the same number of data points and labels'
 
@@ -264,7 +270,12 @@ class MLP:
         :return: a list with the predicted class for each point.
         """
         # check data
-        assert isinstance(data, np.ndarray) and len(data.shape) == 2, 'data must be a 2-dimensional numpy array'
+        assert isinstance(data, np.ndarray), 'data must be a numpy array'
+        assert len(data.shape) == 2, 'data must be 2D matrix'
+        assert np.issubdtype(data.dtype, np.number), 'data must be numeric'
+        assert data.shape[1] == self.data.shape[1], \
+            f'data must have the same number of inputs as the example data.' \
+            f' Expected {self.data.shape[1]} but got {data.shape[1]}'
 
         # retrieve network output
         output, _ = self.forward_prop(data)
@@ -283,7 +294,12 @@ class MLP:
         :return: the network accuracy and resulting confusion matrix.
         """
         # check data and labels
-        assert isinstance(data, np.ndarray) and len(data.shape) == 2, 'data must be a 2-dimensional numpy array'
+        assert isinstance(data, np.ndarray), 'data must be a numpy array'
+        assert len(data.shape) == 2, 'data must be 2D matrix'
+        assert np.issubdtype(data.dtype, np.number), 'data must be numeric'
+        assert data.shape[1] == self.data.shape[1], \
+            f'data must have the same number of inputs as the example data.' \
+            f' Expected {self.data.shape[1]} but got {data.shape[1]}'
         assert isinstance(labels, (list, np.ndarray)), 'labels must be a list or numpy array'
         assert len(data) == len(labels), 'there must be the same number of data points and labels'
 
