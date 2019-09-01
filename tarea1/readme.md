@@ -43,3 +43,8 @@ A continuación se meustran ejemplos de los resultados obtenidos (utilizando see
 En general se aprecian buenos resultados, obteniendo sobre 90% precisión en todas las redes probadas.
 Además la implementación permite comparar fácilmente distintas configuraciones, entregando una buena interfaz para el
 usuario.
+
+
+### Ejercicios
+
+La neuronas implementadas en clases se encuentran en la carpeta ejercicios.
