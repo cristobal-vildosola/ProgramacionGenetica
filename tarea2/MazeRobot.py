@@ -92,7 +92,6 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
     img = plt.imshow(maze)
     plt.set_cmap('gist_rainbow')
     plt.axis('off')
-    plt.pause(.01)
 
     # calculate min path length
     min_length = 0
@@ -126,11 +125,11 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
     print(f'Minimum path length: {min_length}')
 
     # initialize GA
-    genes = [Step() for _ in range(int(min_length) + 5)]
+    genes = [Step() for _ in range(int(min_length * 1.5))]
 
     def fitness(ind: Individual):
         distance_to_end, distance = simulate_path(maze, ind.genes)
-        return -distance_to_end * 100 - distance
+        return -(distance_to_end * min_length + distance)
 
     def end_condition(gen_alg):
         # end if there is no change in last n iterations
@@ -174,17 +173,17 @@ def main():
         [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
         [1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
         [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-        [1, 0, 0, 0, 1, 1, 1, 1, 1, 1],
+        [1, 0, 1, 0, 1, 1, 1, 1, 1, 1],
         [1, 0, 1, 0, 0, 0, 0, 0, 4, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
-    random.seed('holi ke ase?')
+    random.seed('askdjhas')
 
     guess_path(
         maze,
         iters=-1,
-        size=5000,
+        size=10000,
         tournament_size=20,
     )
 

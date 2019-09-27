@@ -80,12 +80,11 @@ class Population:
 
         # generate new individuals
         new_individuals = []
+        for i in range(0, len(selected), 2):
+            new_individuals.append(selected[i].crossover(selected[i + 1]))
 
         if self.elitism:
             new_individuals.append(best_ind)
-
-        for i in range(0, len(selected), 2):
-            new_individuals.append(selected[i].crossover(selected[i + 1]))
 
         self.individuals = new_individuals
         return min_fit, mean_fit, max_fit, best_ind
