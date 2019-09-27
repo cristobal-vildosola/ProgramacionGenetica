@@ -133,9 +133,9 @@ class GeneticAlgorith:
 
             if verbose:
                 if to_string:
-                    print(f'iteration {it:3}: {to_string(best_ind)} ({max_f})')
+                    print(f'iteration {it + 1:3}: {to_string(best_ind)} ({max_f})')
                 else:
-                    print(f'iteration {it:3}: {best_ind} ({max_f})')
+                    print(f'iteration {it + 1:3}: {best_ind} ({max_f})')
 
             if end_condition is not None and end_condition(self):
                 break

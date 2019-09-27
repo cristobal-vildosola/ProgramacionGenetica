@@ -1,6 +1,5 @@
 import copy
 import random
-import time
 
 import matplotlib.pyplot as plt
 
@@ -74,7 +73,7 @@ def show_path(maze, genes):
             pos[0] += dy
             pos[1] += dx
 
-            maze_copy[pos[0]][pos[1]] = max(2, maze_copy[pos[0]][pos[1]] + 0.4)
+            maze_copy[pos[0]][pos[1]] = max(3, maze_copy[pos[0]][pos[1]] + 0.2)
             path.append(step)
 
         if maze[pos[0]][pos[1]] == 4:
@@ -84,6 +83,12 @@ def show_path(maze, genes):
 
 
 def guess_path(maze, iters=30, size=100, tournament_size=5):
+    # show maze
+    img = plt.imshow(maze)
+    plt.set_cmap('gist_rainbow')
+    plt.axis('off')
+    plt.pause(.01)
+
     # calculate min path length
     min_length = 0
 
@@ -113,9 +118,9 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
                 queue.clear()
                 break
 
-        dfs[pos[0]][pos[1]] = 1
+    print(f'Minimum path length: {min_length}')
 
-    print(min_length)
+    # initialize GA
     genes = [Step() for _ in range(int(min_length) * 4)]
 
     def fitness(ind: Individual):
@@ -123,6 +128,13 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
         return -distance_to_end * 100 - distance
 
     def end_condition(gen_alg):
+        # end if there is no change in last n iterations
+        n = 40
+        last_iters = gen_alg.history['maxs'][-n:]
+        if len(last_iters) == n and max(last_iters) == min(last_iters):
+            return True
+
+        # end when the optimum is found
         return gen_alg.history['maxs'][-1] == -min_length
 
     genetic_alg = GeneticAlgorith(
@@ -132,15 +144,13 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
         tournament_size=tournament_size
     )
 
+    # evolve GA
     def to_string(ind):
         path, maze_copy = show_path(maze, ind.genes)
 
-        time.sleep(1)
-        global img, it
-        it += 1
+        plt.pause(.3)
         img.set_data(maze_copy)
-        plt.title(f'iteration {it}')
-        plt.pause(.05)
+        plt.title(f'best path')
 
         return "".join([str(x) for x in path])
 
@@ -148,10 +158,6 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
     genetic_alg.plot_history()
 
     return
-
-
-it = 0
-img = None
 
 
 def main():
@@ -163,20 +169,15 @@ def main():
         [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
         [1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
         [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-        [1, 0, 1, 0, 1, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 1, 1, 1, 1, 1, 1],
         [1, 0, 1, 0, 0, 0, 0, 0, 4, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
-    global img
-    img = plt.imshow(maze)
-    plt.colorbar()
-    plt.pause(.1)
-
     guess_path(
         maze,
-        iters=30,
-        size=1000,
+        iters=-1,
+        size=100,
         tournament_size=20,
     )
 
