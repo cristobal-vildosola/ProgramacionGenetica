@@ -69,15 +69,20 @@ def show_path(maze, genes):
         dy = dys[step.direction]
         dx = dxs[step.direction]
 
+        # advance only when valid
         if maze[pos[0] + dy][pos[1] + dx] != 1:
             pos[0] += dy
             pos[1] += dx
 
-            maze_copy[pos[0]][pos[1]] = max(3, maze_copy[pos[0]][pos[1]] + 0.2)
+            maze_copy[pos[0]][pos[1]] = max(2.5, maze_copy[pos[0]][pos[1]] + 0.2)
             path.append(step)
 
+        # detect end
         if maze[pos[0]][pos[1]] == 4:
             break
+
+    # mark end of path
+    maze_copy[pos[0]][pos[1]] = 3
 
     return path, maze_copy
 
@@ -121,7 +126,7 @@ def guess_path(maze, iters=30, size=100, tournament_size=5):
     print(f'Minimum path length: {min_length}')
 
     # initialize GA
-    genes = [Step() for _ in range(int(min_length) * 4)]
+    genes = [Step() for _ in range(int(min_length) + 5)]
 
     def fitness(ind: Individual):
         distance_to_end, distance = simulate_path(maze, ind.genes)
@@ -174,10 +179,12 @@ def main():
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
+    random.seed('holi ke ase?')
+
     guess_path(
         maze,
         iters=-1,
-        size=100,
+        size=5000,
         tournament_size=20,
     )
 

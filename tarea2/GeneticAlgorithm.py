@@ -38,13 +38,15 @@ class Population:
                  genes: List[Gene],
                  fitness: Callable,
                  size: int = 100,
-                 tournament_size=5):
+                 tournament_size=5,
+                 elitism=True):
 
         self.genes: List[Gene] = genes
         self.fitness: Callable = fitness
 
         self.size: int = size
         self.tournament_size: int = tournament_size
+        self.elitism = elitism
 
         self.individuals: List[Individual] = []
         self.fitnesses: List[float] = numpy.zeros(size)
@@ -71,12 +73,18 @@ class Population:
 
         # select 2*n individuals in tournaments
         selected = []
-        for _ in range(self.size * 2):
+
+        size = (self.size - self.elitism) * 2
+        for _ in range(size):
             selected.append(self.tournament())
 
         # generate new individuals
         new_individuals = []
-        for i in range(0, self.size * 2, 2):
+
+        if self.elitism:
+            new_individuals.append(best_ind)
+
+        for i in range(0, len(selected), 2):
             new_individuals.append(selected[i].crossover(selected[i + 1]))
 
         self.individuals = new_individuals
@@ -103,13 +111,15 @@ class GeneticAlgorith:
                  genes: List[Gene],
                  fitness: callable,
                  size: int = 100,
-                 tournament_size: int = 5):
+                 tournament_size: int = 5,
+                 elitism=True):
 
         self.population = Population(
             genes=genes,
             fitness=fitness,
             size=size,
             tournament_size=tournament_size,
+            elitism=elitism
         )
 
         self.history = {
