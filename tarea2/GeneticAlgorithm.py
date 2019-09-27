@@ -80,7 +80,7 @@ class Population:
             new_individuals.append(selected[i].crossover(selected[i + 1]))
 
         self.individuals = new_individuals
-        return min_fit, mean_fit, max_fit, str(best_ind)
+        return min_fit, mean_fit, max_fit, best_ind
 
     def calc_fitnesses(self):
         for i in range(self.size):
@@ -119,7 +119,7 @@ class GeneticAlgorith:
             'bests': [],
         }
 
-    def evolve(self, iters=30, verbose: bool = True, end_condition: callable = None):
+    def evolve(self, iters=30, end_condition: callable = None, verbose: bool = True, to_string=None):
         if iters < 1:
             iters = 999999999
 
@@ -132,7 +132,10 @@ class GeneticAlgorith:
             self.history['bests'].append(best_ind)
 
             if verbose:
-                print(f'iteration {it:3}: {best_ind} ({max_f})')
+                if to_string:
+                    print(f'iteration {it:3}: {to_string(best_ind)} ({max_f})')
+                else:
+                    print(f'iteration {it:3}: {best_ind} ({max_f})')
 
             if end_condition is not None and end_condition(self):
                 break
