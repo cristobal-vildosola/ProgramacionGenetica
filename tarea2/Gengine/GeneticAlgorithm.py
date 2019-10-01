@@ -2,7 +2,7 @@ from typing import List, Tuple, Callable
 
 import matplotlib.pyplot as plt
 
-from src.Population import Population, Gene
+from Gengine.Population import Population, Gene
 
 
 class GeneticAlgorith:
@@ -55,15 +55,15 @@ class GeneticAlgorith:
     def plot_history(self, fitness_range: Tuple[int, int] = None):
         plt.figure()
 
-        plt.plot(self.history['mins'], 'r-')
-        plt.plot(self.history['means'], 'b-')
         plt.plot(self.history['maxs'], 'g-')
+        plt.plot(self.history['means'], 'b-')
+        plt.plot(self.history['mins'], 'r-')
         plt.ylim(fitness_range)
 
         plt.title('Population Evolution')
         plt.xlabel('iteration')
         plt.ylabel('fitness')
-        plt.legend(['min', 'mean', 'max'])
+        plt.legend(['max', 'mean', 'min'])
 
         plt.show()
         return

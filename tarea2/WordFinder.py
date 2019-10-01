@@ -2,8 +2,7 @@ import random
 import string
 from typing import List, Union, Tuple
 
-from src.GeneticAlgorithm import GeneticAlgorith
-from src.Population import Gene, Individual
+from Gengine import *
 
 
 class Char(Gene):

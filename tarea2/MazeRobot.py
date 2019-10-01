@@ -5,8 +5,7 @@ from typing import List
 import matplotlib.pyplot as plt
 import numpy
 
-from src.GeneticAlgorithm import GeneticAlgorith
-from src.Population import Gene, Individual
+from Gengine import *
 
 
 class Step(Gene):
@@ -21,9 +20,9 @@ class Step(Gene):
 
 
 # Maze utilities
-W = -3.  # wall
+W = -1.  # wall
 S = 1.  # start
-E = 3.  # end
+E = 2.  # end
 dxs = (-1, 0, 1, 0)
 dys = (0, -1, 0, 1)
 
@@ -111,15 +110,16 @@ def mark_path(maze: List[List[float]], genes: List[Step]) -> [List[Step], List[L
             break
 
     # mark end of path
-    maze_copy[pos[0]][pos[1]] = (S + E) / 2
+    maze_copy[pos[0]][pos[1]] = S + (E - S) * 3 / 4
     return path, maze_copy
 
 
 def guess_path(maze: List[List[float]], iters: int = 30, size: int = 100, tournament_size: int = 5):
     # show maze
     img = plt.imshow(maze)
-    plt.set_cmap('gist_rainbow')
+    plt.set_cmap('viridis')
     plt.axis('off')
+    plt.waitforbuttonpress(.3)
 
     # calculate min path length
     start = find_num(maze, S)
@@ -154,9 +154,8 @@ def guess_path(maze: List[List[float]], iters: int = 30, size: int = 100, tourna
     def show_best(ind: Individual) -> str:
         path, maze_copy = mark_path(maze, ind.genes)
 
-        plt.pause(.2)
+        plt.pause(.4)
         img.set_data(maze_copy)
-        plt.title(f'best path')
 
         return "".join([str(x) for x in path])
 
