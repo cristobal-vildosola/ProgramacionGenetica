@@ -32,13 +32,13 @@ cambios simultáneos en el código de entrenamiento.
 A continuación se meustran ejemplos de los resultados obtenidos (utilizando seed=42)
 
 ##### Evolución de la red al entrenar
-![evolution](./img/evolution.png)
+![evolution](tarea1/img/evolution.png)
 
 ##### Matrices de confusión obtenidas
-![conf_mats](./img/confMats.png)
+![conf_mats](tarea1/img/confMats.png)
 
 ##### Precisión según neuronas en la capa oculta
-![accuracies](./img/accs.png)
+![accuracies](tarea1/img/accs.png)
 
 En general se aprecian buenos resultados, obteniendo sobre 90% precisión en todas las redes probadas.
 Además la implementación permite comparar fácilmente distintas configuraciones, entregando una buena interfaz para el
