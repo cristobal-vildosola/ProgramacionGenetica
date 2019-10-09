@@ -13,7 +13,7 @@ Para ejecutar la tarea basta correr el comando `$ python MazeRobot.py` desde la 
 
 El problema a resolver será el de encontrar el camino más corto para llegar a la salida de un laberinto. A continuación se muestra un laberinto de ejemplo, el bloque verde representa el inicio, el amarillo la salida y los moraddos los obstáculos.
 
-![laberinth](tarea2/img/laberinth.png)
+![laberinth](./img/laberinth.png)
 
 
 ### Solución
@@ -35,10 +35,10 @@ Finalmente, se tomó como condición de término llegar al camino óptimo (encon
 A continuación se muestra la evolución obtenida utilizando 100 individuos y torneos de tamaño 5, y el número de generaciones necesarias para llegar al óptimo usando distintas configuraciones.
 
 ##### Evolución de la red al entrenar
-![evolution](tarea2/img/evolution.png)
+![evolution](./img/evolution.png)
 
 ##### Número de generaciones necesarias para llegar al óptimo utilizando distintas configuraciones
-![configurations](tarea2/img/configurations.png)
+![configurations](./img/configurations.png)
 
 
 ### Análisis
