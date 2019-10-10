@@ -16,17 +16,19 @@ class Gene(ABC):
 
 
 class Individual:
-    def __init__(self, genes: List[Gene]):
+    def __init__(self, genes: List[Gene], mutation_rate: float = 0.1):
         self.genes: List[Gene] = genes
+        self.mutation_rate = mutation_rate
 
     def crossover(self, other: 'Individual'):
         index = random.randint(0, len(self.genes) - 1)
-        new_params = self.genes[:index] + other.genes[index:]
+        new_genes = self.genes[:index] + other.genes[index:]
 
-        index = random.randint(0, len(self.genes) - 1)
-        new_params[index] = new_params[index].mutate()
+        for i in range(len(new_genes)):
+            if random.random() < self.mutation_rate:
+                new_genes[i] = new_genes[i].mutate()
 
-        return Individual(new_params)
+        return Individual(genes=new_genes, mutation_rate=self.mutation_rate)
 
     def __str__(self):
         return "".join([str(x) for x in self.genes])
@@ -36,11 +38,13 @@ class Population:
     def __init__(self,
                  genes: List[Gene],
                  fitness: Callable[[Individual], float],
+                 mutation_rate: float = 0.1,
                  size: int = 100,
                  tournament_size=5,
                  elitism=True):
 
         self.genes: List[Gene] = genes
+        self.mutation_rate = mutation_rate
         self.fitness: Callable = fitness
 
         self.size: int = size
@@ -56,8 +60,10 @@ class Population:
         self.individuals = []
 
         for _ in range(self.size):
-            new_params = [x.mutate() for x in self.genes]
-            self.individuals.append(Individual(new_params))
+            new_genes = [x.mutate() for x in self.genes]
+            self.individuals.append(
+                Individual(genes=new_genes, mutation_rate=self.mutation_rate)
+            )
 
         return
 

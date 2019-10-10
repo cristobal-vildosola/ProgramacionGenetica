@@ -114,7 +114,13 @@ def mark_path(maze: List[List[float]], genes: List[Step]) -> [List[Step], List[L
     return path, maze_copy
 
 
-def guess_path(maze: List[List[float]], iters: int = 30, size: int = 100, tournament_size: int = 5):
+def guess_path(
+        maze: List[List[float]],
+        iters: int = 30,
+        size: int = 100,
+        mutation_rate=0.1,
+        tournament_size: int = 5
+):
     # show maze
     img = plt.imshow(maze)
     plt.set_cmap('viridis')
@@ -136,6 +142,7 @@ def guess_path(maze: List[List[float]], iters: int = 30, size: int = 100, tourna
     genetic_alg = GeneticAlgorith(
         genes=genes,
         fitness=fitness,
+        mutation_rate=mutation_rate,
         size=size,
         tournament_size=tournament_size
     )
@@ -184,7 +191,7 @@ def main():
         maze,
         iters=-1,
         size=100,
-        tournament_size=5,
+        mutation_rate=0.1,
     )
 
 

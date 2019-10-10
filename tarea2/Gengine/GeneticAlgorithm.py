@@ -9,6 +9,7 @@ class GeneticAlgorith:
     def __init__(self,
                  genes: List[Gene],
                  fitness: callable,
+                 mutation_rate: float = 0.1,
                  size: int = 100,
                  tournament_size: int = 5,
                  elitism=True):
@@ -16,9 +17,10 @@ class GeneticAlgorith:
         self.population = Population(
             genes=genes,
             fitness=fitness,
+            mutation_rate=mutation_rate,
             size=size,
             tournament_size=tournament_size,
-            elitism=elitism
+            elitism=elitism,
         )
 
         self.history = {

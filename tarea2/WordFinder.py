@@ -17,7 +17,7 @@ class Char(Gene):
         return self.char
 
 
-def guess_word(word='askdjhas', iters=30, size=100, tournament_size=5):
+def guess_word(word='askdjhas', iters=30, size=100, mutation_rate=0.1, tournament_size=5, verbose=True):
     genes = [Char() for _ in range(len(word))]
 
     def fitness(ind: Individual):
@@ -33,14 +33,17 @@ def guess_word(word='askdjhas', iters=30, size=100, tournament_size=5):
     genetic_alg = GeneticAlgorith(
         genes=genes,
         fitness=fitness,
+        mutation_rate=mutation_rate,
         size=size,
         tournament_size=tournament_size
     )
 
-    genetic_alg.evolve(iters=iters, verbose=True, end_condition=end_condition)
-    genetic_alg.plot_history()
+    genetic_alg.evolve(iters=iters, end_condition=end_condition, verbose=verbose)
+    if verbose:
+        genetic_alg.plot_history()
 
-    return
+    # return number of iterations
+    return len(genetic_alg.history['maxs'])
 
 
 if __name__ == '__main__':
