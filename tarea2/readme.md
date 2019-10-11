@@ -39,7 +39,7 @@ La evolución mostrada fue obtenida utilizando 100 individuos y mutación de 0.5
 ##### Evolución de la red al entrenar
 ![evolution](./img/popEvolution.png)
 
-##### Mapa de calor de distintas configuraciones
+##### Mapa de calor de desempeño
 ![configurations](./img/configurations.png)
 
 
@@ -47,9 +47,9 @@ La evolución mostrada fue obtenida utilizando 100 individuos y mutación de 0.5
 
 La implementación del algoritmo fue relativamente sencilla, obteniendo un framework genérico y simple de usar, en el que lo importante al resolver un problema son los genes definidos y la función de fitness, y no el código generado. Esto permite que se puedan abordar poblemas relativamente rápido para ver cómo se comporta el algoritmo genético y qué soluciones encuentra.
 
-Se aprecia en los resultados obtenidos que el algoritmo evoluciona de buena manera, creciendo de manera estable (esto se asegura utilizando elitismo), y manteniendo un buen rango entre el mejor y el peor individuo asegurando diversidad en la población.
+Se aprecia en los resultados obtenidos que el algoritmo evoluciona de buena manera, creciendo de forma estable (esto se asegura utilizando elitismo), y manteniendo un buen rango entre el mejor y el peor individuo, asegurando diversidad en la población.
 
-Por otra parte, en el mapa de calor se puede ver que aumentando la tasa de mutación se obtienen mejores resultados, incluso con poblaciones pequeñas, pero aumentar la población genera una mejora mayor.
+Por otra parte, en el mapa de calor se puede ver que aumentando la tasa de mutación se obtienen resultados más rápido casi siempre, y aumentar el tamaño de la población reduce el número de generaciones necesarias, aunque aumenta el tiempo que toma llegar al óptimo. Esto podría mejorarse utilizando procesamiento paralelo en GPU, en vista de que la generación de cada nuevo individuo es un proceso completamente independiente del resto, de esta forma se podría reducir un poco más el tiempo necesario para llegar al óptimo.
 
 ### Ejercicios
 
