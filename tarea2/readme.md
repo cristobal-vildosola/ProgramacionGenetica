@@ -32,13 +32,15 @@ Finalmente, se tomó como condición de término llegar al camino óptimo (encon
 
 ### Resultados
 
-A continuación se muestra la evolución obtenida utilizando 100 individuos y torneos de tamaño 5, y el número de generaciones necesarias para llegar al óptimo usando distintas configuraciones.
+A continuación se muestran los resultados obtenidos para el problema de encontrar una frase (`WordFinder.py`) utilizando el ejemplo *"hola como le baila?"*.
+
+La evolución mostrada fue obtenida utilizando 100 individuos y mutación de 0.05 y el mapa de calor muestra número de generaciones necesarias para llegar al óptimo usando distintas configuraciones. Todos los experimentos fueron realizados utilizando elitismo y selección utilizando torneos de tamaño 5.
 
 ##### Evolución de la red al entrenar
-![evolution](./img/evolution.png)
+![evolution](./img/popEvolution.png)
 
 ##### Número de generaciones necesarias para llegar al óptimo utilizando distintas configuraciones
-![configurations](./img/configurations.png)
+![configurations](./img/configurations2.png)
 
 
 ### Análisis

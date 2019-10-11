@@ -62,8 +62,8 @@ class GeneticAlgorith:
         plt.plot(self.history['mins'], 'r-')
         plt.ylim(fitness_range)
 
-        plt.title('Population Evolution')
-        plt.xlabel('iteration')
+        plt.title('Evolucion de la población')
+        plt.xlabel('generación')
         plt.ylabel('fitness')
         plt.legend(['max', 'mean', 'min'])
 

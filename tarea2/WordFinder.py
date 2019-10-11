@@ -51,6 +51,7 @@ if __name__ == '__main__':
     guess_word(
         user_word,
         iters=-1,
-        size=len(user_word) * 10,
-        tournament_size=max(len(user_word) // 2, 5),
+        size=100,
+        tournament_size=5,
+        mutation_rate=0.1,
     )

@@ -6,11 +6,11 @@ from WordFinder import guess_word
 
 
 def test_configs():
-    word = 'hola lkahsdlaksjda'  # 'La InTeliGENciA ArtiFicIal Va A cOnquIsTar eL MUndO'
+    word = 'hola como le baila?'
 
     repetitions = 3
     population_size = [25, 50, 100, 250, 500, 1000]
-    mutation = [i / 100 for i in range(1, 6)]
+    mutation = [i * 2 / 100 for i in range(1, 10)]
 
     iterations = numpy.zeros([len(mutation), len(population_size)])
 
@@ -36,7 +36,7 @@ def test_configs():
     plt.xticks(range(len(population_size)), labels=population_size)
     plt.yticks(range(len(mutation)),  labels=mutation)
 
-    plt.title('Desempeño usando distintas configuraciones')
+    plt.title('Generaciones necesarias para llegar al óptimo')
     plt.xlabel('tamaño de la población')
     plt.ylabel('tasa de mutación')
 
