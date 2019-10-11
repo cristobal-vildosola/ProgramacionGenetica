@@ -17,7 +17,7 @@ class Char(Gene):
         return self.char
 
 
-def guess_word(word='askdjhas', iters=30, size=100, mutation_rate=0.1, tournament_size=5, verbose=True):
+def guess_word(word='askdjhas', iters=30, size=100, mutation_rate=0.5, tournament_size=5, verbose=True):
     genes = [Char() for _ in range(len(word))]
 
     def fitness(ind: Individual):
@@ -53,5 +53,5 @@ if __name__ == '__main__':
         iters=-1,
         size=100,
         tournament_size=5,
-        mutation_rate=0.1,
+        mutation_rate=0.5,
     )

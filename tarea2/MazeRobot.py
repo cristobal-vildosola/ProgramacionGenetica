@@ -118,7 +118,7 @@ def guess_path(
         maze: List[List[float]],
         iters: int = 30,
         size: int = 100,
-        mutation_rate=0.1,
+        mutation_rate=0.5,
         tournament_size: int = 5
 ):
     # show maze
@@ -191,7 +191,7 @@ def main():
         maze,
         iters=-1,
         size=100,
-        mutation_rate=0.1,
+        mutation_rate=0.5,
     )
 
 

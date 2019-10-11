@@ -8,9 +8,9 @@ from WordFinder import guess_word
 def test_configs():
     word = 'hola como le baila?'
 
-    repetitions = 3
-    population_size = [25, 50, 100, 250, 500, 1000]
-    mutation = [i * 2 / 100 for i in range(1, 10)]
+    repetitions = 5
+    population_size = range(100, 1001, 100)
+    mutation = [i / 10 for i in range(1, 11)]
 
     iterations = numpy.zeros([len(mutation), len(population_size)])
 

@@ -16,7 +16,7 @@ class Gene(ABC):
 
 
 class Individual:
-    def __init__(self, genes: List[Gene], mutation_rate: float = 0.1):
+    def __init__(self, genes: List[Gene], mutation_rate: float = 0.5):
         self.genes: List[Gene] = genes
         self.mutation_rate = mutation_rate
 
@@ -24,9 +24,9 @@ class Individual:
         index = random.randint(0, len(self.genes) - 1)
         new_genes = self.genes[:index] + other.genes[index:]
 
-        for i in range(len(new_genes)):
-            if random.random() < self.mutation_rate:
-                new_genes[i] = new_genes[i].mutate()
+        if random.random() <= self.mutation_rate:
+            i = random.randint(0, len(new_genes) - 1)
+            new_genes[i] = new_genes[i].mutate()
 
         return Individual(genes=new_genes, mutation_rate=self.mutation_rate)
 
@@ -38,7 +38,7 @@ class Population:
     def __init__(self,
                  genes: List[Gene],
                  fitness: Callable[[Individual], float],
-                 mutation_rate: float = 0.1,
+                 mutation_rate: float = 0.5,
                  size: int = 100,
                  tournament_size=5,
                  elitism=True):

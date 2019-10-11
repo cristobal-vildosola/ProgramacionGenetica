@@ -34,18 +34,22 @@ Finalmente, se tomó como condición de término llegar al camino óptimo (encon
 
 A continuación se muestran los resultados obtenidos para el problema de encontrar una frase (`WordFinder.py`) utilizando el ejemplo *"hola como le baila?"*.
 
-La evolución mostrada fue obtenida utilizando 100 individuos y mutación de 0.05 y el mapa de calor muestra número de generaciones necesarias para llegar al óptimo usando distintas configuraciones. Todos los experimentos fueron realizados utilizando elitismo y selección utilizando torneos de tamaño 5.
+La evolución mostrada fue obtenida utilizando 100 individuos y mutación de 0.5 y el mapa de calor muestra número de generaciones necesarias para llegar al óptimo usando distintas configuraciones. Todos los experimentos fueron realizados utilizando elitismo y selección utilizando torneos de tamaño 5.
 
 ##### Evolución de la red al entrenar
 ![evolution](./img/popEvolution.png)
 
-##### Número de generaciones necesarias para llegar al óptimo utilizando distintas configuraciones
-![configurations](./img/configurations2.png)
+##### Mapa de calor de distintas configuraciones
+![configurations](./img/configurations.png)
 
 
 ### Análisis
 
+La implementación del algoritmo fue relativamente sencilla, obteniendo un framework genérico y simple de usar, en el que lo importante al resolver un problema son los genes definidos y la función de fitness, y no el código generado. Esto permite que se puedan abordar poblemas relativamente rápido para ver cómo se comporta el algoritmo genético y qué soluciones encuentra.
 
+Se aprecia en los resultados obtenidos que el algoritmo evoluciona de buena manera, creciendo de manera estable (esto se asegura utilizando elitismo), y manteniendo un buen rango entre el mejor y el peor individuo asegurando diversidad en la población.
+
+Por otra parte, en el mapa de calor se puede ver que aumentando la tasa de mutación se obtienen mejores resultados, incluso con poblaciones pequeñas, pero aumentar la población genera una mejora mayor.
 
 ### Ejercicios
 
